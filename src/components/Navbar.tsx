@@ -1,4 +1,6 @@
 // components/Navbar.tsx
+'use client';
+
 import { Box, Input, Button, InputGroup, InputRightElement, Icon } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useState } from "react";
@@ -11,19 +13,8 @@ const Navbar = ({ onSearch }: NavbarProps) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = () => {
-    if (searchQuery.trim() === "") {
-      // Reset the search when query is empty
-      onSearch(""); // Notify parent component to reset search
-    } else {
+    if (searchQuery.trim() !== "") {
       onSearch(searchQuery);
-    }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-    // Reset search when input is cleared
-    if (e.target.value.trim() === "") {
-      onSearch(""); // Notify parent component to reset search
     }
   };
 
@@ -40,12 +31,11 @@ const Navbar = ({ onSearch }: NavbarProps) => {
       top="0"
       zIndex="1000"
       justifyContent="flex-end"
-      mx="auto"
     >
       <InputGroup width={{ base: "200px", sm: "300px" }} mr={4}>
         <Input
           placeholder="Search posts"
-          onChange={handleInputChange}
+          onChange={(e) => setSearchQuery(e.target.value)}
           value={searchQuery}
           pr="3rem"
         />

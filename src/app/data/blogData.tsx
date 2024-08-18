@@ -5,7 +5,7 @@ export const blogPosts = [
     date: "2024-08-16",
     slug: "first-blog-post",
     excerpt: "This is a brief excerpt of the first blog post.",
-    content: "This is the full content of the first blog post.",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Integer ac dolor ut augue fermentum vehicula. Nullam cursus vestibulum libero, non viverra tortor congue non. Pellentesque sit amet augue a magna suscipit tincidunt. Sed nec efficitur elit, non venenatis odio. Mauris fermentum ligula a lacus vehicula, nec luctus odio luctus. Phasellus at egestas purus. Aenean eu turpis nec lectus euismod sodales.",
     image: "./images/next.jpg", 
   },
   {
@@ -13,7 +13,7 @@ export const blogPosts = [
     date: "2024-08-17",
     slug: "second-blog-post",
     excerpt: "This is a brief excerpt of the second blog post.",
-    content: "This is the full content of the second blog post.",
+    content: "TLorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Integer ac dolor ut augue fermentum vehicula. Nullam cursus vestibulum libero, non viverra tortor congue non. Pellentesque sit amet augue a magna suscipit tincidunt. Sed nec efficitur elit, non venenatis odio. Mauris fermentum ligula a lacus vehicula, nec luctus odio luctus. Phasellus at egestas purus. Aenean eu turpis nec lectus euismod sodales.",
    image: "./images/next.jpg", 
   },
   {

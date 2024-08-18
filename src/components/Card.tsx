@@ -1,5 +1,4 @@
-// components/Card.tsx
-import { Box, Heading, Text, Image, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Heading, Text, Image } from "@chakra-ui/react";
 import Link from "next/link";
 
 interface CardProps {
@@ -11,20 +10,15 @@ interface CardProps {
 }
 
 export default function Card({ title, excerpt, date, image, slug }: CardProps) {
-  const cardWidth = useBreakpointValue({ base: "100%", sm: "337px" });
-
   return (
     <Box
       p={4}
       shadow="md"
       borderWidth="1px"
       borderRadius="md"
-      maxW={cardWidth}
+      maxW={{ base: "full", sm: "337px" }} // Responsive max width
       mx="auto"
-      ml="64px"
-      overflow="hidden"
-      border="1px solid #000000"
-     
+      overflow="hidden" // Prevent overflow
     >
       <Image
         src={image}
