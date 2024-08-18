@@ -13,7 +13,7 @@ export default function Layout({ children, onSearch }: LayoutProps) {
   return (
     <Box width="100%" maxWidth="1440px" mx="auto" position="relative" >
       <Navbar onSearch={onSearch} />
-      <Box> {/* Adjust for Navbar height */}
+      <Box> 
         {children}
       </Box>
       <Footer />

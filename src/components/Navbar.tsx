@@ -1,9 +1,7 @@
-// components/Navbar.tsx
-'use client';
-
 import { Box, Input, Button, InputGroup, InputRightElement, Icon } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useState } from "react";
+import { useRouter } from "next/router"; // Import useRouter
 
 interface NavbarProps {
   onSearch: (query: string) => void;
@@ -11,11 +9,16 @@ interface NavbarProps {
 
 const Navbar = ({ onSearch }: NavbarProps) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter(); // Initialize router
 
   const handleSearch = () => {
     if (searchQuery.trim() !== "") {
       onSearch(searchQuery);
     }
+  };
+
+  const handleCreatePostClick = () => {
+    router.push("/create-post"); // Navigate to the create post page
   };
 
   return (
@@ -48,7 +51,12 @@ const Navbar = ({ onSearch }: NavbarProps) => {
           />
         </InputRightElement>
       </InputGroup>
-      <Button colorScheme="teal" size="sm" mt={{ base: 2, sm: 0 }}>
+      <Button 
+        colorScheme="teal" 
+        size="sm" 
+        mt={{ base: 2, sm: 0 }}
+        onClick={handleCreatePostClick} // Add onClick handler
+      >
         Create Blog Post
       </Button>
     </Box>
