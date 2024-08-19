@@ -1,16 +1,10 @@
-// pages/_app.tsx
 import { ChakraProvider } from "@chakra-ui/react";
-import Layout from "../components/Layout";
+import { AppProps } from "next/app";
 
-
-function MyApp({ Component, pageProps }) {
- 
-
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider >
-      
-        <Component {...pageProps} />
-      
+    <ChakraProvider>
+      <Component {...pageProps} />
     </ChakraProvider>
   );
 }

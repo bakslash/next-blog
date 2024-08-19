@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, FormControl, FormLabel, Input, Textarea, Heading, useToast, Center } from "@chakra-ui/react";
+import { Box, Button, FormControl, FormLabel, Input, Textarea, Heading, useToast, Center, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import Image from 'next/image';
 import Layout from "@/components/Layout";
@@ -7,7 +7,7 @@ import Layout from "@/components/Layout";
 const CreatePostPage = () => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
-  const [excerpt, setExcerpt] = useState("");
+  const [content, setContent] = useState("");
   const [slug, setSlug] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -17,7 +17,7 @@ const CreatePostPage = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!title || !date || !excerpt || !slug || !image) {
+    if (!title || !date || !content || !slug || !image) {
       toast({
         title: "Error",
         description: "All fields are required.",
@@ -29,7 +29,7 @@ const CreatePostPage = () => {
     }
 
     const imageBase64 = await convertImageToBase64(image);
-    console.log({ title, date, excerpt, slug, imageBase64 });
+    console.log({ title, date, content, slug, imageBase64 });
 
     toast({
       title: "Success",
@@ -39,7 +39,7 @@ const CreatePostPage = () => {
       isClosable: true,
     });
 
-    router.push("/"); // Redirect to the home page after successful submission
+    router.push("/"); 
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,8 +68,15 @@ const CreatePostPage = () => {
     });
   };
 
+  function onSearch(query: string): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
-    <Layout>
+    <Layout onSearch={onSearch}>
+      <Button onClick={() => router.push("/")} colorScheme="teal">
+        Back to Home
+      </Button>
       <Box
         width="704px"
         height="742px"
@@ -84,80 +91,88 @@ const CreatePostPage = () => {
         boxShadow="lg"
         display="flex"
         flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
+
         gap="16px"
       >
-        <h5>
-          Create New Post
-        </h5>
-        
+        <Heading as='h6' size='xs'>
+          Create Blog Post
+        </Heading>
+        <Text>Enter your blog post here</Text>
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
-          <FormControl  isRequired>
-            <FormLabel>Title</FormLabel>
+          <FormControl >
+            <FormLabel>Blog Title</FormLabel>
             <Input
               value={title}
               height="32px"
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter post title"
-             
+
             />
           </FormControl>
-          <FormControl  isRequired>
-            <FormLabel size="sm">Date</FormLabel>
+          <FormControl  >
+            <FormLabel size="sm">Blog Date</FormLabel>
             <Input
               type="date"
               height="32px"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-             
+
             />
           </FormControl>
-          <FormControl  isRequired>
-            <FormLabel>Slug</FormLabel>
+          <FormControl  >
+            <FormLabel>Blog Slug</FormLabel>
             <Input
               value={slug}
               height="32px"
               onChange={(e) => setSlug(e.target.value)}
               placeholder="Enter post slug"
-             
+
             />
           </FormControl>
-          <FormControl  isRequired>
-            <FormLabel>Image Upload</FormLabel>
+          <FormControl  >
+            <FormLabel>Image </FormLabel>
             <Input
               type="file"
               accept="image/*"
               height={196}
               onChange={handleImageChange}
-             
+
             />
-            {imagePreview && (
+            {/* {imagePreview && (
               <Center mt={3}>
                 <Image
                   src={imagePreview}
                   alt="Image Preview"
                   width={200}
-                  height="174px"
+                  height={200}
                   objectFit="cover"
                 />
               </Center>
-            )}
+            )} */}
           </FormControl>
-          <FormControl mb={3} isRequired>
+          <FormControl mb={3} >
             <FormLabel>Content</FormLabel>
             <Textarea
               height="138px"
-              value={excerpt}
-              onChange={(e) => setExcerpt(e.target.value)}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
               placeholder="Enter post content"
-              
+
             />
           </FormControl>
-          
-          <Button colorScheme="teal" type="submit" width="120px">
-            Save Changes
-          </Button>
+
+          <Box display="flex" justifyContent="flex-end">
+            <Button
+              background="#8E8E8E"
+              type="submit"
+              width="120px"
+              ml="auto"
+              color="white"
+            >
+              Save Changes
+            </Button>
+          </Box>
+
         </form>
       </Box>
     </Layout>

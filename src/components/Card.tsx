@@ -16,9 +16,9 @@ export default function Card({ title, excerpt, date, image, slug }: CardProps) {
       shadow="md"
       borderWidth="1px"
       borderRadius="md"
-      maxW={{ base: "full", sm: "337px" }} // Responsive max width
+      maxW={{ base: "full", sm: "337px" }} 
       mx="auto"
-      overflow="hidden" // Prevent overflow
+      overflow="hidden" 
     >
       <Image
         src={image}
